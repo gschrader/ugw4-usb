@@ -25,7 +25,7 @@ RUN apt-get update && \
 
 ENV PATH="/opt/cross/bin:${PATH}"
 
-COPY build.sh /root/build.sh
+COPY build-kernel.sh /root/build.sh
 
 RUN chmod +x /root/build.sh && /root/build.sh
 

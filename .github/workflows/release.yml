@@ -14,10 +14,18 @@ jobs:
               run: docker build . --file Dockerfile --tag ugw4
             - name: Copy vmlinux
               run: docker run -v $(pwd):/data ugw4 cp /build/vmlinux /data/vmlinux
+            - run: cp vmlinux vmlinux.tmp
+            - name: Build img
+              run: sudo ./build-img.sh
+            - run: cp *.img ugw4.img
+            - run: gzip ugw4.img
             - name: Upload Release
               uses: softprops/action-gh-release@v1
               with:
-                files: vmlinux
+                files: |
+                  vmlinux
+                  ugw4.img.gz
+    
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       

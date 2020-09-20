@@ -1,0 +1,6 @@
+*.img
+*.tar
+*.tmp
+*.md5
+mkeosimg
+.DS_Store
