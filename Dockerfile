@@ -24,8 +24,11 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV PATH="/opt/cross/bin:${PATH}"
+ARG version_arg
+
+ENV VERSION=${version_arg}
 
 COPY build-kernel.sh /root/build.sh
 
-RUN chmod +x /root/build.sh && /root/build.sh
+RUN chmod +x /root/build.sh && /root/build.sh ${VERSION}
 

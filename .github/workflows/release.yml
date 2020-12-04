@@ -10,13 +10,15 @@ jobs:
 
         steps:
             - uses: actions/checkout@v1 
+            - id: get_version
+              uses: battila7/get-version-action@v2
             - name: Build Docker image
-              run: docker build . --file Dockerfile --tag ugw4
+              run: docker build --build-arg version_arg=${{ steps.get_version.outputs.version-without-v }} . --file Dockerfile --tag ugw4
             - name: Copy vmlinux
               run: docker run -v $(pwd):/data ugw4 cp /build/vmlinux /data/vmlinux
             - run: cp vmlinux vmlinux.tmp
             - name: Build img
-              run: sudo ./build-img.sh
+              run: sudo ./build-img.sh ${{ steps.get_version.outputs.version-without-v }}
             - run: cp *.img ugw4.img
             - run: gzip ugw4.img
             - name: Upload Release

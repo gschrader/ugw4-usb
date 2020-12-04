@@ -43,7 +43,7 @@ make install-gcc
 # Download/Build kernel
 mkdir /build
 cd /build
-curl -o src.tar.bz2 https://dl.ui.com/unifi/firmware/UGW4/4.4.50.5272479/GPL.UGW4.v4.4.50.5272479.tbz2
+curl -o src.tar.bz2 https://dl.ui.com/unifi/firmware/UGW4/$1/GPL.UGW4.v$1.tbz2
 tar -xf src.tar.bz2 --wildcards 'source/kernel_*' --strip-components 1
 mv kernel_* kernel.tar.gz
 tar -xf kernel.tar.gz --strip-components 1

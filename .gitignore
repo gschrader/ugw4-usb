@@ -4,3 +4,5 @@
 *.md5
 mkeosimg
 .DS_Store
+/.idea/
+*.iml
